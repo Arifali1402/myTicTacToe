@@ -35,6 +35,16 @@ const checkWin = () => {
     })
 }
 
+// Function to check for a draw
+const checkDraw = () => {
+    let boxtext = document.getElementsByClassName('boxtext');
+    let filled = Array.from(boxtext).every(box => box.innerText !== "");
+    if (filled && !isgameover) {
+        document.querySelector('.info').innerText = "Game ended in a tie!";
+        isgameover = true;
+    }
+}
+
 // Game logic
 // music.play();
 let boxes = document.getElementsByClassName("box");
@@ -48,6 +58,7 @@ Array.from(boxes).forEach(element => {
             checkWin();
             if (!isgameover) {
                 document.getElementsByClassName('info')[0].innerText = "Turn for " + turn;
+                checkDraw();
             }
         }
     });
